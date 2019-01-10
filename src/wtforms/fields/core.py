@@ -129,11 +129,10 @@ class Field(object):
         self.short_name = _name
         self.type = type(self).__name__
 
-        self.check_validators(validators)
-
         if callable(validators):
             validators = [validators]
 
+        self.check_validators(validators)
         self.validators = validators or self.validators
 
         self.id = id or self.name
@@ -192,9 +191,6 @@ class Field(object):
     @classmethod
     def check_validators(cls, validators):
         if validators is None:
-            return
-
-        if callable(validators):
             return
 
         for validator in validators:
